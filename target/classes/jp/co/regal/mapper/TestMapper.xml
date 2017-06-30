@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.regal.mapper.TestMapper">
+
+	<!-- 選ばれた住所に対する管轄データをエンティティに格納 -->
+    <resultMap id="TestResult" type="jp.co.regal.entity.Test">
+        <result column="id" property="id" />
+        <result column="court_name" property="courtName" />
+        <result column="postal_code" property="postalCode" />
+        <result column="address" property="address" />
+    </resultMap>
+
+    <resultMap id ="getAddress" type="jp.co.regal.entity.Address">
+    	<result column="id" property="id" />
+    	<result column= "address" property="address" />
+    </resultMap>
+
+
+    <select id="getTest" resultMap="TestResult" parameterType="int">
+        select *
+        from courts
+        where id = #{id}
+    </select>
+    <select id ="getAddress" resultMap ="getAddress">
+    	select *
+    	from address
+
+    </select>
+</mapper>
